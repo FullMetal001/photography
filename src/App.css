@@ -52,8 +52,14 @@
   left: 10px; 
   max-width: 20%; 
   height: auto; 
-  z-index: 1;  
-  transition: top 0.5s ease;
+  z-index: 1; 
+  opacity: 0;
+  transform: translateY(20px); 
+  transition: top 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+}
+.sm-image.visible {
+  opacity: 1; 
+  transform: translateY(0);
 }
 
 
@@ -65,12 +71,30 @@
 
 /* Info */
 .info {
-  margin: 0 60px 80px;
-  padding: 10px 0 0;
+  margin: 0 auto 80px;
+  padding: 10px 40px 0;  
+  align-items: center;  
+  max-width: 950px;  
 }
 .info h3 {
-  font-family: "EB Garamond", serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
+  font-size: 1.4em;
+  color: white;
+  text-align: center;
+  text-justify: inter-word;
+  letter-spacing: 1px;
+  word-spacing: 1px;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  user-select: none;
+  padding-bottom: 20px;
+}
+.info p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-size: 1.1em;
+  font-weight: 500;
   color: white;
   text-align: justify;
   text-justify: inter-word;
@@ -78,7 +102,8 @@
   word-spacing: 1px;
   hyphens: auto;
   overflow-wrap: break-word;
-  user-select: none;
+  user-select: none;  
+  padding-bottom: 5px;  
 }
 
 /* Portfolio */
@@ -94,7 +119,7 @@
   user-select: none;
 }
 .port-tittle h2 {
-  color: black;
+  color: white;
 }
 .port-image-container {
   display: flex;
@@ -121,12 +146,22 @@
   height: 400px;
 }
 .port-image p {
-  font-family: "EB Garamond", serif;
+  font-family:Arial, Helvetica, sans-serif;
   font-style: normal;
-  color: black;
+  color: white;
   font-size: 1.1em;
   font-weight: bold;
   user-select: none;
+}
+.click-indicator {
+  position: absolute; 
+  bottom: 30px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  background-color: rgba(0, 0, 0, 0.7); 
+  color: white; 
+  padding: 5px 10px; 
+  border-radius: 5px;     
 }
 
 /* Footer */
@@ -160,11 +195,19 @@
 .contact-image {
   width: 150px; 
   height: auto;    
-  margin-left: auto;  
+  margin-left: auto; 
+  margin-right: 30px; 
+  opacity: 0; 
+  transform: translateY(20px); 
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.contact-image.visible {
+  opacity: 1;
+  transform: translateY(0); 
 }
 .botton-space {
   background-color: rgb(129, 203, 212);
-  padding: 20px;
+  padding: 25px;
 }
 
 /* Modal, ventana emergente */
@@ -254,14 +297,21 @@
     font-size: 1em;
     letter-spacing: 1px;
   }
+  .info p {
+    font-size: 0.8em;
+    letter-spacing: 1px;
+  }
 
   /* Portfolio */
   .port-image p {    
     font-size: 1em;    
   }
+  .click-indicator {
+     font-size: 0.8em;
+  }
 
   /* Footer */ 
   .contact-image {
-    width: 70px; 
+    width: 80px; 
   }
 }

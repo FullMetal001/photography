@@ -5,6 +5,8 @@ const Home = () => {
     const [modalImages, setModalImages] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const portImageRefs = useRef([]);
+    const smImageRef = useRef(null);
+    const ctImageRef = useRef(null);
 
     const Modal = ({ isOpen, onClose, images, currentIndex, onNext, onPrev }) => {
         if (!isOpen) return null;
@@ -75,7 +77,8 @@ const Home = () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible'); 
-                    observer.unobserve(entry.target); 
+                } else {
+                    entry.target.classList.remove('visible'); 
                 }
             });
         });
@@ -85,10 +88,24 @@ const Home = () => {
             observer.observe(image);
         });
 
+        if (smImageRef.current) {
+            observer.observe(smImageRef.current);
+        }
+
+        if (ctImageRef.current) {
+            observer.observe(ctImageRef.current);
+        }
+
         return () => {            
             portImageRefs.current.forEach(image => {
                 observer.unobserve(image);
             });
+            if (smImageRef.current) {
+                observer.unobserve(smImageRef.current);
+            }
+            if (ctImageRef.current) {
+                observer.unobserve(ctImageRef.current);
+            }
         };
     }, []);
 
@@ -104,11 +121,14 @@ const Home = () => {
             </div>
             <div className='image-top'>
                 <img src='/images/bg1.png' alt='bg image' className='bg-image' />
-                <img src='/images/bu.png' alt='sm image' className='sm-image' />
+                <img src='/images/bu.png' alt='sm image' className='sm-image' ref={smImageRef} />
             </div>
             <div className='background'>
                 <div className='info'>
-                    <h3>Welcome to my Photography Portfolio, I am Gabriela Carrillo a professional photographer with more than 7 years of experience. I specialize in capturing special moments with a natural and spontaneous style, and in landscape photography. Enjoy the tour and if you want to capture your special moments forever, don't hesitate to contact me.</h3>
+                    <h3>Welcome to my Photography Portfolio</h3>
+                    <p>I am Gabriela Carrillo, a professional photographer with more than 7 years of experience.</p>
+                    <p>I specialize in capturing special moments with a natural and spontaneous style, and in landscape photography.</p>
+                    <p>Enjoy the tour and if you want to capture your special moments forever, don't hesitate to contact me.</p>
                 </div>
                 <div className='portfolio'>
                     <div className='port-tittle'>
@@ -124,6 +144,7 @@ const Home = () => {
                             >
                                 <img src={item.main} alt={`image${index + 1}`} />
                                 <p>{item.title}</p>
+                                <span className="click-indicator">Click to see more</span>
                             </div>
                         ))}
                     </div>
@@ -133,7 +154,7 @@ const Home = () => {
                         <h2>CONTACT</h2>
                         <p>photogabriela@gmail.com</p>
                     </div>
-                    <img src='/images/buu.png' alt='contact-image' className='contact-image' />
+                    <img src='/images/buu.png' alt='contact-image' className='contact-image' ref={ctImageRef} />
                 </div>
                 <div className='botton-space'></div>
                 <Modal
