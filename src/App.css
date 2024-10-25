@@ -22,15 +22,21 @@
 .logo-g {
   display: flex;
   justify-content: center; 
-  width: 100%;
-  margin-bottom: 50px;   
+  width: 100%;     
 }
 .logo-g img {
   width: 250px;
   max-width: 100%; 
   height: auto; 
-  transition: width 0.5s ease;
+  background-image: url('/images/mountain1.jpg');
+  background-size: 200% 100%;
+  background-position: 0 0;  
+  transition: width 0.5s ease;   
 }
+.logo-g img.animate {
+  animation: moveBackground 10s linear;
+}
+
 
 /* Image top */
 .image-top {
@@ -48,7 +54,7 @@
 }
 .sm-image {
   position:absolute; 
-  top: 480px; 
+  top: 400px; 
   left: 10px; 
   max-width: 20%; 
   height: auto; 
@@ -279,6 +285,15 @@
   cursor: not-allowed; 
 }
 
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
 @media (max-width: 560px){
   /* Header */
   .logo-icon img {
@@ -290,7 +305,7 @@
 
   /* image top */
   .sm-image {    
-    top: 400px;         
+    top: 330px;         
   } 
 
   /* Info */

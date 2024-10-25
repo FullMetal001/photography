@@ -7,6 +7,7 @@ const Home = () => {
     const portImageRefs = useRef([]);
     const smImageRef = useRef(null);
     const ctImageRef = useRef(null);
+    const logogRef = useRef(null);
 
     const Modal = ({ isOpen, onClose, images, currentIndex, onNext, onPrev }) => {
         if (!isOpen) return null;
@@ -83,10 +84,28 @@ const Home = () => {
             });
         });
         
+        const observerlogo = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('animate'); 
+                entry.target.style.animation = 'none';
+                entry.target.offsetHeight; 
+                entry.target.style.animation = null;
+              } else {
+                entry.target.classList.remove('animate');
+              }
+            });
+          }, {
+            threshold: 0.1
+          });
         
         portImageRefs.current.forEach(image => {
             observer.observe(image);
         });
+
+        if (logogRef.current) {
+            observerlogo.observe(logogRef.current);
+        }
 
         if (smImageRef.current) {
             observer.observe(smImageRef.current);
@@ -100,6 +119,9 @@ const Home = () => {
             portImageRefs.current.forEach(image => {
                 observer.unobserve(image);
             });
+            if (logogRef.current) {
+                observerlogo.unobserve(logogRef.current);
+            }
             if (smImageRef.current) {
                 observer.unobserve(smImageRef.current);
             }
@@ -116,7 +138,7 @@ const Home = () => {
                     <img src='/images/logo-icon.png' alt='logo-p' />
                 </div>
                 <div className='logo-g'>
-                    <img src='/images/logo-g.png' alt='image-top' />
+                    <img src='/images/logo.png' alt='image-top' ref={logogRef} />                    
                 </div>
             </div>
             <div className='image-top'>
