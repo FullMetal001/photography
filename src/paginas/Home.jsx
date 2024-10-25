@@ -82,7 +82,7 @@ const Home = () => {
                 }
             });
         });
-
+        
         
         portImageRefs.current.forEach(image => {
             observer.observe(image);

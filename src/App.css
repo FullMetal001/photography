@@ -55,7 +55,7 @@
   z-index: 1; 
   opacity: 0;
   transform: translateY(20px); 
-  transition: top 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+  transition: top 0.5s ease, opacity 3.0s ease, transform 3.0s ease;
 }
 .sm-image.visible {
   opacity: 1; 
@@ -134,11 +134,12 @@
   cursor: pointer; 
   opacity: 0; 
   transform: translateY(20px); 
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;  
 }
 .port-image.visible {
   opacity: 1; 
   transform: translateY(0); 
+  filter: blur(0);
 }
 .port-image img {
   width: 300px; 
@@ -199,7 +200,7 @@
   margin-right: 30px; 
   opacity: 0; 
   transform: translateY(20px); 
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 3.0s ease, transform 3.0s ease;
 }
 .contact-image.visible {
   opacity: 1;
